@@ -160,7 +160,7 @@ ExecStopPost=rm -rf $CATALINA_HOME/temp/*
 [Install]
 WantedBy=multi-user.target
 EOL
-	if [[ $OS_VERSION == 16* ]]; then
+	if [[ $OS_VERSION == 16* ]] || [[ $OS_VERSION == 18* ]]; then
 	    echo "Using systemd configuration"
 		systemctl daemon-reload
 		systemctl stop webwasb.service    
@@ -249,7 +249,7 @@ ExecStart=/usr/share/hue/build/env/bin/supervisor
 [Install]
 WantedBy=multi-user.target
 EOL
-	if [[ $OS_VERSION == 16* ]]; then
+	if [[ $OS_VERSION == 16* ]] || [[ $OS_VERSION == 18* ]]; then
 	    echo "Using systemd configuration"
 		systemctl daemon-reload
 		systemctl stop hue.service    
@@ -283,7 +283,7 @@ fi
 
 if [[ $OS_VERSION == 14* ]]; then
     export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-elif [[ $OS_VERSION == 16* ]]; then
+elif [[ $OS_VERSION == 16* ]] || [[ $OS_VERSION == 18* ]]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 fi
 
@@ -306,4 +306,3 @@ startServiceViaRest HDFS
 
 setupWebWasbService
 setupHueService
-
